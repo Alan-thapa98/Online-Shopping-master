@@ -1,0 +1,86 @@
+{%extends  'index.html'%}
+{%load static%}
+{% load crispy_forms_tags %}
+{%block content%}
+        <div class="cart-table-area section-padding-400">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <div class=" mt-50 ">
+
+                            <div class="cart-title">
+                              <strong>  <h4>Checkout</h4></strong>
+                            </div>
+
+                            <form  method="POST">
+                              {% csrf_token %}
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 mb-0">
+                                      {{form.fname|as_crispy_field}}
+                                    </div>
+                                    <div class="form-group col-md-6 mb-0">
+                                      {{form.lname|as_crispy_field}}
+                                    </div>
+                                    <div class="form-group col-md-12 mb-0">
+                                      {{form.c_name|as_crispy_field}}
+                                    </div>
+                                    <div class="form-group col-md-6 mb-0">
+                                      {{form.email|as_crispy_field}}
+                                    </div>
+                                    <div class="form-group col-md-6 mb-0">
+                                      {{form.states|as_crispy_field}}
+                                    </div>
+                                    <div class="form-group col-md-6 mb-0">
+                                        {{form.address|as_crispy_field}}
+                                    </div>
+                                    <div class="form-group col-md-6 mb-0">
+                                    {{form.town|as_crispy_field}}
+                                    </div>
+                                    <div class="form-group col-md-6 mb-0">
+                                      {{form.zipcode|as_crispy_field}}
+                                    </div>
+                                    <div class="form-group col-md-6 mb-0">
+                                      {{form.phone_number|as_crispy_field}}
+                                    </div>
+                                    <div class="form-group col-md-12 mb-0" >
+                                      {{form.comment|as_crispy_field}}
+                                    </div>
+                              <input type="submit" class="amado-btn "  name="" value="Checkout">
+
+                                </div>
+                                
+
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="cart-summary">
+                            <h5>Cart Total</h5>
+                            <ul class="summary-table">
+                                <li><span>subtotal:</span> <span>$140.00</span></li>
+                                <li><span>delivery:</span> <span>Free</span></li>
+                                <li><span>total:</span> <span>$140.00</span></li>
+                            </ul>
+
+                            <div class="payment-method">
+                                <!-- Cash on delivery -->
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="cod" checked>
+                                    <label class="custom-control-label" for="cod">Cash on Delivery</label>
+                                </div>
+                                <!-- Paypal -->
+                                <div class="custom-control custom-checkbox mr-sm-2">
+                                    <input type="checkbox" class="custom-control-input" id="paypal">
+                                    <label class="custom-control-label" for="paypal">Paypal <img class="ml-15" src="{%static 'img/core-img/paypal.png' %}" alt=""></label>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{%endblock%}

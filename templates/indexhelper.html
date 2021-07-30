@@ -1,0 +1,42 @@
+{%extends  'index.html'%}
+{%load static%}
+{%block title%}Home online shop{%endblock%}
+
+{%block content%}
+{%for aaa in pos %}
+<div class="single-products-catagory clearfix">
+    <a href="{%url 'Basic_App:product' pk=aaa.pk%}">
+        <img src="{{aaa.image_url|default_if_none:'#'}}" alt="">
+        <!-- Hover Content -->
+        <div class="hover-content">
+            <div class="line"></div>
+            <p>From ${{aaa.price}}</p>
+            <h4>{{aaa.title}}</h4>
+        </div>
+    </a>
+</div>
+{%endfor%}
+{%endblock%}
+{%block paginator%}
+<div class="paginator">
+  <ul  class="pagination justify-content-center" style="margin:20px 0">
+  {%if page_obj.has_previous%}
+
+  <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a></li>
+  {%endif%}
+{%for num in paginator.page_range%}
+{%if page_obj.number == num %}
+<li class="page-item"><a class="page-link" href="?page={{num}}"><strong>{{num}}</strong></a></li>
+{%elif num > data.number|add:'-3' and num < data.number|add:'3'%}
+<li class="page-item"><a class="page-link" href="?page={{num}}">{{num}}</a></li>
+    {%endif%}
+{%endfor%}
+
+{%if page_obj.has_next%}
+<li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>
+
+
+{%endif%}
+</ul>
+</div>
+{%endblock%}
